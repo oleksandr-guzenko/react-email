@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import {prevPage} from '../../actions/formActions';
+import {prevPage, clearData} from '../../actions/formActions';
 
 class Header extends Component {
   onClick = (e) => {
     if(this.props.form.pageIndex > 0) this.props.prevPage();
+  }
+
+  onExit = (e) => {
+    this.props.clearData();
   }
 
   render() {
@@ -27,7 +31,7 @@ class Header extends Component {
                 <span className="logo_top" href="#"><img className="av_lo" src="/logo.png" alt="" /></span>
               </div> 
               <div className="col-sm-4 col-xs-4" style={{textAlign: 'right'}}>
-                <button type="button" className="close_btn">x</button>
+                <button type="button" className="close_btn" onClick={(e) => this.onExit(e)}>x</button>
               </div> 
             </div>
           </div>
@@ -45,4 +49,4 @@ const mapStateToProps = (state) => ({
   form: state.form,
 });
 
-export default connect(mapStateToProps, {prevPage})(Header);
+export default connect(mapStateToProps, {prevPage, clearData})(Header);

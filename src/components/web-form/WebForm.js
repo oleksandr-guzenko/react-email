@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import emailjs, { init } from "@emailjs/browser";
+import Swal from 'sweetalert2';
 
 import StartForm from './StartForm';
 import HowSoon from './HowSoon';
@@ -24,16 +25,20 @@ class WebForm extends Component {
   }
 
   nextPage = (field, value) => {
-    if(field !== undefined) this.setState({[field]: value});
     this.props.nextPage();
   }
 
-  onSubmit = (formData) => {
-    const data = {...this.state, ...formData};
-
-    console.log(data);
-
-    emailjs.send("SERVICE_ID","TEMPLATE_ID", data, 'USER_ID');
+  onSubmit = () => {
+    emailjs
+      .send("service_ujfsbjc","template_90xr8k4", this.props.form.data, 'xWJPCKETg5lDc1pLN')
+      .then(function(response) {
+        Swal.fire({
+          icon: 'success',
+          text: 'Thanks for sending your details. We will review your details and one of our team member will call you back to discuss.'
+        });
+     }, function(error) {
+        console.log('FAILED...', error);
+     });
   }
 
   render() {
@@ -48,8 +53,7 @@ class WebForm extends Component {
       <HaveYouExperienced nextPage={this.nextPage} />,
       <Specific nextPage={this.nextPage} />,
       <ThankYou onSubmit={this.onSubmit} />
-    ];
-    
+    ];    
 
     return (
       <div className="container">

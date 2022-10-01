@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux';
+import {setData} from '../../actions/formActions';
 
-export default class Specific extends Component {
+class Specific extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            values: []
+            values: this.props.form.data.specific === undefined ? [] : this.props.form.data.specific.split(',')
         };
     }
 
     onClick = () => {
-      if(this.state.values.length > 0) this.props.nextPage('specific', this.state.values.toString());
+      if(this.state.values.length > 0) {
+        this.props.nextPage();
+      }
     }
 
     onChange = (e) => {
@@ -21,6 +25,7 @@ export default class Specific extends Component {
         else values.splice(index, 1);
         
         this.setState({values: values});
+        this.props.setData({specific: this.state.values.toString()});
     }
     
     render() {
@@ -37,13 +42,25 @@ export default class Specific extends Component {
         'No, just curious about IVF'
       ];
 
+      const specific = this.state.values;
+
       const items = values.map((value, index) => {
-        return  <li key={index}>
+        if(specific.findIndex(indexValue => value === indexValue) === -1) {
+          return <li key={index}>
                     <div className="app_form_control">
-                        <input className="app_checkbox_input" type="checkbox" value={value} onChange={(e) => this.onChange(e)} /> 
+                        <input className="app_checkbox_input" type="checkbox" value={value} checked={false} onChange={(e) => this.onChange(e)} /> 
                         <label>{value}</label>
                     </div>
-                </li>
+                </li>;
+        }
+        else {
+          return <li key={index}>
+                    <div className="app_form_control">
+                        <input className="app_checkbox_input" type="checkbox" value={value} checked={true} onChange={(e) => this.onChange(e)} /> 
+                        <label>{value}</label>
+                    </div>
+                </li>;
+        }
       });
 
       return (
@@ -62,3 +79,9 @@ export default class Specific extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  form: state.form,
+});
+
+export default connect(mapStateToProps, {setData})(Specific);

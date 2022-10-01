@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux';
+import {setData} from '../../actions/formActions';
 
-export default class HowOldYou extends Component {
-    onClick = (field, value) => {
-        this.props.nextPage(field, value);
+class HowOldYou extends Component {
+    onClick = (data) => {
+      this.props.nextPage();
+      this.props.setData(data);
     }
 
     render() {
@@ -12,8 +15,12 @@ export default class HowOldYou extends Component {
         '38 or older'
       ];
 
+      const data = this.props.form.data.howOldYou;
+      const style = {borderColor: '#ef6b43', color: '#ef6b43'};
+
       const items = values.map((value, index) => {
-        return <li key={index}><button type="button" onClick={(e) => this.onClick('howOldYou', value)}>{value}</button></li>
+        if(data === value) return <li key={index}><button type="button" onClick={(e) => this.onClick({howOldYou: value})} style={style}>{value}</button></li>;
+        else return <li key={index}><button type="button" onClick={(e) => this.onClick({howOldYou: value})}>{value}</button></li>
       });
 
       return (
@@ -26,3 +33,9 @@ export default class HowOldYou extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  form: state.form,
+});
+
+export default connect(mapStateToProps, {setData})(HowOldYou);

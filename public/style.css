@@ -99,7 +99,7 @@ cursor: pointer;
     padding: 0;
     margin: 1px 0px 0px !important;
     position: relative;
-    z-index: 999999;
+    z-index: 1;
 }  
 
 
