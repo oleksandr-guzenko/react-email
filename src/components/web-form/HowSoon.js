@@ -27,6 +27,7 @@ class HowSoon extends Component {
       return (
       <div className="form_s">
         <h1>How soon do you want to have a baby?</h1>
+        <p className="header-gap"></p>
         <ul className="app-quiz__answers">
           {items}
         </ul>

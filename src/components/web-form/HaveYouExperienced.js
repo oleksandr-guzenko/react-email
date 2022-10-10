@@ -26,6 +26,7 @@ class HaveYouExperienced extends Component {
       return (
       <div className="form_s">
         <h1>Have you experienced failed-IUI or IVF?</h1>
+        <p className="header-gap"></p>
         <ul className="app-quiz__answers">
             {items}
         </ul>

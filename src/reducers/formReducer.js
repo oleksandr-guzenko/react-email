@@ -12,7 +12,6 @@ import {
       lastName: '',
       email: '',
       phone: '',
-      preferred: 'Yes',
       freeTime: '',
       errors: {}
     }
@@ -46,7 +45,6 @@ const reducer = function(state = initialState, action)  {
               lastName: '',
               email: '',
               phone: '',
-              preferred: 'Yes',
               freeTime: '',
               errors: {}
             },

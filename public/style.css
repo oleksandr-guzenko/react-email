@@ -41,7 +41,7 @@ button{
 }
 
 .app-quiz__answers li{ list-style: none; margin-bottom: 25px;  }
-.form_s{ width:70%; margin:15% auto; text-align:center; }
+.form_s{ width:70%; margin: 5% auto auto 15%; text-align:center; }
 .form_s p { font-size:17px; line-height:30px; margin-top:20px;  }
 button:hover {
     background: #faefec;
@@ -49,7 +49,7 @@ button:hover {
     border: 1px solid #b44c2d;
 }
 
-.top_s{ width: 100%; display: inline-block; padding: 25px 0px;  }
+.top_s{ width: 100%; display: inline-block; padding: 1.5rem 0px .5rem;  }
 .header_progress{ display: -webkit-flex;
     display: flex;  }
 
@@ -104,7 +104,7 @@ cursor: pointer;
 
 
 .thankyou_f{ text-align: left ; } 
-.app_form_control{ width: 100%; display: inline-block; margin: 10px 0px;  }
+.app_form_control{ width: 100%; display: inline-block; margin: .75rem 0px; padding: 0 1.5rem; }
 .app_form_control label{ display: block; font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -225,9 +225,39 @@ button.quiz__back_btn {
     position: relative;
 }
 
+.app_checkbox_input {
+    height: 12px;
+    width: 12px;
+    float: left;
+    max-width: 12px;
+    padding: 0;
+    margin: 8px 0px 0px !important;
+    position: relative;
+    z-index: 1;
+}  
 
+.app_checkbox_input + label {
+    padding-left: 1.5rem;
+    font-size: 16px;
+}
+
+#factors .app_form_control {
+    margin: 0;
+}
+
+.free-time .app_form_control {
+    margin: 0 auto;
+}
 }
 
 .invalid {
     border-color: #c00 !important;
+}
+
+.free-time li{
+    padding: 0 !important;
+}
+
+.header-gap {
+    height: 1.5rem;
 }

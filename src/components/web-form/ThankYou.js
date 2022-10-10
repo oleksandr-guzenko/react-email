@@ -5,10 +5,6 @@ import {connect} from 'react-redux';
 import {setData} from '../../actions/formActions';
 
 class ThankYou extends Component {
-    onSetPreferred = (e) => {
-        this.props.setData({preferred: e.target.checked? 'No' : 'Yes'});
-    }
-
     onSubmit = (e) => {
         const errors = {};
         const {firstName, lastName, email, phone} = this.props.form.data;
@@ -56,56 +52,41 @@ class ThankYou extends Component {
             lastName,
             email,
             phone,
-            preferred,
             freeTime,
             errors
         } = this.props.form.data;
 
       return (
       <div className="form_s thankyou_f">
-        <h1>Thanks! We’re getting started on your plan.</h1>
-        <p>Every fertility journey is unique. One of us will reach out within 48 hours.</p>
+        <h1>Thanks! We’re getting started with your plan</h1>
+        <p style={{marginBottom: 0}}>Every fertility journey is unique. One of us will reach out within 48 hours.</p>
 
             <div className="row">
-               <div className="col-sm-6">
+               <div className="col-12 pr-1 pl-1">
                 <div className="app_form_control" style={{position: 'relative'}}>
-                   <label><span>*</span>First name</label>
-                   <input className={classnames('s_input', {'invalid': errors.firstName})} value={firstName} type="text" name="firstName" placeholder="Please enter your first name" onChange={(e) => this.onChange(e)} />
-                   <p style={{position: 'absolute', bottom: '-2.2rem', right: 0, color: '#c00'}}>{errors.firstName}</p>
+                   <input className={classnames('s_input', {'invalid': errors.firstName})} value={firstName} type="text" name="firstName" placeholder="First Name" onChange={(e) => this.onChange(e)} />
+                   <p style={{position: 'absolute', bottom: '-2.2rem', left: '1.5rem', color: '#c00'}}>{errors.firstName}</p>
                  </div>  
                </div>
 
-                <div className="col-sm-6">
+                <div className="col-12">
                     <div className="app_form_control" style={{position: 'relative'}}>
-                        <label><span>*</span>Last name</label>
-                        <input className={classnames('s_input', {'invalid': errors.lastName})} value={lastName} type="text" name="lastName" placeholder="Please enter your Last name" onChange={(e) => this.onChange(e)} /> 
-                        <p style={{position: 'absolute', bottom: '-2.2rem', right: 0, color: '#c00'}}>{errors.lastName}</p>
+                        <input className={classnames('s_input', {'invalid': errors.lastName})} value={lastName} type="text" name="lastName" placeholder="Last Name" onChange={(e) => this.onChange(e)} /> 
+                        <p style={{position: 'absolute', bottom: '-2.2rem', left: '1.5rem', color: '#c00'}}>{errors.lastName}</p>
                     </div>  
                 </div>
 
-            <div className="col-sm-6">
+            <div className="col-12">
                 <div className="app_form_control" style={{position: 'relative'}}>
-                   <label><span>*</span>Email</label>
-                   <input className={classnames('s_input', {'invalid': errors.email})} value={email} type="email" name="email" placeholder="Please enter your email" onChange={(e) => this.onChange(e)} />
-                   <p style={{position: 'absolute', bottom: '-2.2rem', right: 0, color: '#c00'}}>{errors.email}</p>
+                   <input className={classnames('s_input', {'invalid': errors.email})} value={email} type="email" name="email" placeholder="Email" onChange={(e) => this.onChange(e)} />
+                   <p style={{position: 'absolute', bottom: '-2.2rem', left: '1.5rem', color: '#c00'}}>{errors.email}</p>
                  </div>  
                </div>
 
-             <div className="col-sm-6">
+             <div className="col-12">
                 <div className="app_form_control" style={{position: 'relative'}}>
-                   <label><span>*</span>Phone</label>
-                   <input className={classnames('s_input', {'invalid': errors.phone})} value={phone} type="tel" name="phone" placeholder="Please enter your phone number" onChange={(e) => this.onChange(e)} />
-                   <p style={{position: 'absolute', bottom: '-2.2rem', right: 0, color: '#c00'}}>{errors.phone}</p>
-                 </div>  
-               </div>
-
-            <div className="col-sm-12">
-                <div className="app_form_control">
-                   <div className="app_form_group_title">Do you have a preferred time for us to contact you?</div>
-                   <label>No  <input className="s_checkbox" type="checkbox" name="checkbox" onChange={(e) => this.onSetPreferred(e)} checked={preferred === 'No' ? true : false} /></label>
-
-<div className="subtitle_text">If you choose <strong>"No"</strong> we will contact you during our regular working hours.</div>
-
+                   <input className={classnames('s_input', {'invalid': errors.phone})} value={phone} type="tel" name="phone" placeholder="Phone Number" onChange={(e) => this.onChange(e)} />
+                   <p style={{position: 'absolute', bottom: '-2.2rem', left: '1.5rem', color: '#c00'}}>{errors.phone}</p>
                  </div>  
                </div>
 
@@ -113,51 +94,74 @@ class ThankYou extends Component {
             <div className="col-sm-12">
                 <div className="app_form_control">
                     <fieldset>
-                        <legend className="app_form_group_label">What is the best day to call you?</legend>
-                        <ul className="app_quiz_answers ">
+                        <legend className="app_form_group_label">What is the best time to contact you?</legend>
+                        <ul className="app_quiz_answers free-time">
                             <li>
-                            <div className="app_form_control">
-                            <input 
-                                className="app_checkbox_input" 
-                                type="checkbox" 
-                                value="Mon-Fri from - to 10:00am to 02::00pm" 
-                                onChange={(e) => this.onChecked(e)}
-                                checked={freeTime.indexOf('Mon-Fri from - to 10:00am to 02::00pm') !== -1}
-                            /> 
-                            <label>Mon-Fri  from - to :<strong>10:00am to 02.00pm</strong></label>
-                            </div>
-                            </li>
-
-                            <li>
-                            <div className="app_form_control">
-                            <input 
-                                className="app_checkbox_input" 
-                                type="checkbox" 
-                                value="Sat from - to 10:00am to 02::00pm" 
-                                onChange={(e) => this.onChecked(e)}
-                                checked={freeTime.indexOf('Sat from - to 10:00am to 02::00pm') !== -1}
-                            /> 
-                            <label>Sat from-to <strong>10:00am to 02.00pm</strong></label>
-                            </div>
+                                <div className="app_form_control">
+                                <input 
+                                    className="app_checkbox_input" 
+                                    type="checkbox" 
+                                    value="Anytime" 
+                                    onChange={(e) => this.onChecked(e)}
+                                    checked={freeTime.indexOf('Anytime') !== -1}
+                                /> 
+                                <label>Anytime</label>
+                                </div>
                             </li>
                             <li>
-                            <div className="app_form_control">
-                            <input 
-                                className="app_checkbox_input" 
-                                type="checkbox" 
-                                value="Sun from - to 12:00am to 02::00pm" 
-                                onChange={(e) => this.onChecked(e)}
-                                checked={freeTime.indexOf('Sun from - to 12:00am to 02::00pm') !== -1}
-                            /> 
-                            <label>Sun from-to <strong>12:00am to 02.00pm</strong></label>
-                            </div>
+                                <div className="app_form_control">
+                                <input 
+                                    className="app_checkbox_input" 
+                                    type="checkbox" 
+                                    value="Weekdays mornings" 
+                                    onChange={(e) => this.onChecked(e)}
+                                    checked={freeTime.indexOf('Weekdays mornings') !== -1}
+                                /> 
+                                <label>Weekdays mornings</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="app_form_control">
+                                <input 
+                                    className="app_checkbox_input" 
+                                    type="checkbox" 
+                                    value="Weekends mornings" 
+                                    onChange={(e) => this.onChecked(e)}
+                                    checked={freeTime.indexOf('Weekends mornings') !== -1}
+                                /> 
+                                <label>Weekends mornings</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="app_form_control">
+                                <input 
+                                    className="app_checkbox_input" 
+                                    type="checkbox" 
+                                    value="Weekends mornings" 
+                                    onChange={(e) => this.onChecked(e)}
+                                    checked={freeTime.indexOf('Weekends mornings') !== -1}
+                                /> 
+                                <label>Weekdays afternoons</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="app_form_control">
+                                <input 
+                                    className="app_checkbox_input" 
+                                    type="checkbox" 
+                                    value="Weekends afternoons" 
+                                    onChange={(e) => this.onChecked(e)}
+                                    checked={freeTime.indexOf('Weekends afternoons') !== -1}
+                                /> 
+                                <label>Weekends afternoons</label>
+                                </div>
                             </li>
                         </ul>
                     </fieldset>
                 </div>  
              </div>
              <div className="col-sm-6">
-                <div className="app_form_control">
+                <div className="app_form_control" style={{marginTop: 0}}>
                     <button className="primary_button sendbtn" type="button" onClick={(e) => this.onSubmit(e)}>Send  <span>&#8594;</span></button>
                 </div>  
             </div>

@@ -12,7 +12,8 @@ class IfYouMenstruate extends Component {
       const values = [
         'Yes',
         'No, they’ve always done their own thing',
-        'No, but they used to be'
+        'No, but they used to be',
+        'No, period'
       ];
 
       const data = this.props.form.data.IfYouMenstruate;
@@ -25,7 +26,8 @@ class IfYouMenstruate extends Component {
 
       return (
       <div className="form_s">
-        <h1>If you menstruate, are your periods 2-7 days long and about the same length every time?</h1>
+        <h1>Are your (or your partner's) periods 2-7 days long and about the same length every time?</h1>
+        <p className="header-gap"></p>
         <ul className="app-quiz__answers">
             {items}
         </ul>

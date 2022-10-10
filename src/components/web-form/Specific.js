@@ -30,14 +30,14 @@ class Specific extends Component {
     
     render() {
       const values = [
-        'I amm in a same-sex couple',
         'Tried unsuccessfully for 6+ months',
         'Age',
         'Previous pregnancy loss',
         'Family health history',
         'A health diagnosis like PCOS or early menopause',
         'Previous difficulty conceiving',
-        'Menstrual cycle changes or irregularities',
+        'Menstrual cycle changes or irregular',
+        'I am single or in a same-sex relationship',
         'Something else',
         'No, just curious about IVF'
       ];
@@ -67,7 +67,7 @@ class Specific extends Component {
       <div className="form_s">
         <h1>Are there specific factors that led you to consider IVF?</h1>
         <p>Select all that apply.</p>
-        <ul className="app_quiz_answers ">
+        <ul className="app_quiz_answers " id="factors">
             {items}
         </ul>
         <div className="col-sm-12">
