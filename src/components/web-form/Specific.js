@@ -12,9 +12,7 @@ class Specific extends Component {
     }
 
     onClick = () => {
-      if(this.state.values.length > 0) {
-        this.props.nextPage();
-      }
+      this.props.nextPage();
     }
 
     onChange = (e) => {
